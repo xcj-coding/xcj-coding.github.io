@@ -252,19 +252,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="上线部署"><a href="#上线部署" class="headerlink" title="上线部署"></a>上线部署</h1><p>基于PM2做web应用的部署，PM2是一款用于生产环境Node.js应用进程管理的工具。具有守护进程，自动负载均衡，零中断重启应用等功能。</p>
-<ul>
-<li>半自动发布</li>
-</ul>
-<p>通过git，拉去代码，切换发布分支，构建代码，利用pm2启动node服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start app.js -i 4 --name &quot;api&quot;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>自动化发布</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 ecosystem</span><br></pre></td></tr></table></figure>
-<p>生成 <code>ecosystem.config.js</code> 配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  /**</span><br><span class="line">   * Application configuration section</span><br><span class="line">   * http://pm2.keymetrics.io/docs/usage/application-declaration/</span><br><span class="line">   */</span><br><span class="line">  apps : [</span><br><span class="line"></span><br><span class="line">    // First application</span><br><span class="line">    &#123;</span><br><span class="line">      name      : &quot;API&quot;,</span><br><span class="line">      script    : &quot;app.js&quot;,</span><br><span class="line">      env: &#123;</span><br><span class="line">        COMMON_VARIABLE: &quot;true&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      env_production : &#123;</span><br><span class="line">        NODE_ENV: &quot;production&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    // Second application</span><br><span class="line">    &#123;</span><br><span class="line">      name      : &quot;WEB&quot;,</span><br><span class="line">      script    : &quot;web.js&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Deployment section</span><br><span class="line">   * http://pm2.keymetrics.io/docs/usage/deployment/</span><br><span class="line">   */</span><br><span class="line">  deploy : &#123;</span><br><span class="line">    production : &#123;</span><br><span class="line">      user : &quot;node&quot;,</span><br><span class="line">      host : &quot;212.83.163.1&quot;,</span><br><span class="line">      ref  : &quot;origin/master&quot;,</span><br><span class="line">      repo : &quot;git@github.com:repo.git&quot;,</span><br><span class="line">      path : &quot;/var/www/production&quot;,</span><br><span class="line">      &quot;post-deploy&quot; : &quot;npm install &amp;&amp; pm2 startOrRestart ecosystem.config.js --env production&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    dev : &#123;</span><br><span class="line">      user : &quot;node&quot;,</span><br><span class="line">      host : &quot;212.83.163.1&quot;,</span><br><span class="line">      ref  : &quot;origin/master&quot;,</span><br><span class="line">      repo : &quot;git@github.com:repo.git&quot;,</span><br><span class="line">      path : &quot;/var/www/development&quot;,</span><br><span class="line">      &quot;post-deploy&quot; : &quot;npm install &amp;&amp; pm2 startOrRestart ecosystem.config.js --env dev&quot;,</span><br><span class="line">      env  : &#123;</span><br><span class="line">        NODE_ENV: &quot;dev&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 deploy ecosystem.json5 production</span><br></pre></td></tr></table></figure>
+              <h1 id="上线部署"><a href="#上线部署" class="headerlink" title="上线部署"></a>上线部署</h1>
+          
       
     </div>
     
@@ -273,6 +262,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a  href="/2017/03/08/9上线部署/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -306,63 +299,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="基本开发规范"><a href="#基本开发规范" class="headerlink" title="基本开发规范"></a>基本开发规范</h1><blockquote>
-<p>目前处于起步阶段，开发规范不好梳理，只能零散提出一些注意项，后续进行补充完善。</p>
-</blockquote>
-<ul>
-<li>node版本，npm版本</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node版本 v6.9.4</span><br><span class="line">npm版本 3.10.10</span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加第三方npm包</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install xxx --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li>卸载第三方npm包</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall xxx --save</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>–save-dev 不可随意使用</p>
-</blockquote>
-<ul>
-<li><p>共用方法，共用类，数据模型，控制器，路由等文件名统一英文大写开头驼峰形式。例如：News.js</p>
-</li>
-<li><p>配置文件英文小写。例如：xxx.conf.js</p>
-</li>
-<li><p>改写后方法，中间件，统一以X开头命名。例如：Xtimeout.js，Xupload.js</p>
-</li>
-<li><p>中间件参数传递，统一挂载到req.nextData = {} 中</p>
-</li>
-<li><p>路由接口采用RESTful架构</p>
-</li>
-<li><p>纯api接口传递数据类型统一使用json，接口请求方法使用post</p>
-</li>
-<li><p>接口返回格式统一</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">res.json(&#123; code: 0, msg: &apos;成功&apos; &#125;)</span><br><span class="line"></span><br><span class="line">res.json(&#123; code: -1, msg: &apos;失败&apos; &#125;) </span><br><span class="line"></span><br><span class="line">res.json(&#123; code: 0, data: &#123;&#125; &#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>目前错误返回code全为-1，后续规划错误码段。</p>
-<p>代码书写，尽量保持和原风格一致，有更好的想法，可以提出，方便统一修改。</p>
-<p>目录结构文件存放参照前面结构介绍章节</p>
-</blockquote>
-<hr>
-<h3 id="git使用规范"><a href="#git使用规范" class="headerlink" title="git使用规范:"></a>git使用规范:</h3><h4 id="1-master分支不能提交代码"><a href="#1-master分支不能提交代码" class="headerlink" title="1. master分支不能提交代码"></a>1. master分支不能提交代码</h4><h4 id="2-dev为开发分支（目前先一起使用dev分支，不要随意开分支，合并到master需知会管理员）"><a href="#2-dev为开发分支（目前先一起使用dev分支，不要随意开分支，合并到master需知会管理员）" class="headerlink" title="2. dev为开发分支（目前先一起使用dev分支，不要随意开分支，合并到master需知会管理员）"></a>2. dev为开发分支（目前先一起使用dev分支，不要随意开分支，合并到master需知会管理员）</h4><p><strong>后续扩展xcj_dev，＊_dev</strong></p>
-<h4 id="3-pro为生产分支"><a href="#3-pro为生产分支" class="headerlink" title="3. pro为生产分支"></a>3. pro为生产分支</h4><p><strong>后续扩展release_1.0.0，release_2.0.0</strong></p>
-<h4 id="4-配置文件修改不要随意提交"><a href="#4-配置文件修改不要随意提交" class="headerlink" title="4. 配置文件修改不要随意提交"></a>4. 配置文件修改不要随意提交</h4><hr>
-<h3 id="项目启动："><a href="#项目启动：" class="headerlink" title="项目启动："></a>项目启动：</h3><ul>
-<li>node环境</li>
-<li><p>npm install 下载依赖</p>
-</li>
-<li><p>npm run start 启动dev环境</p>
-</li>
-<li><p>npm run server 启动生产环境</p>
-</li>
-<li><p>npm run dev 开发环境构建（一般不用，调试或构建版问题重现使用）</p>
-</li>
-<li>npm run pro 生产环境构建（在pro分支使用，尚未配置完全）</li>
-</ul>
-
+              <h1 id="基本开发规范"><a href="#基本开发规范" class="headerlink" title="基本开发规范"></a>基本开发规范</h1>
+          
       
     </div>
     
@@ -371,6 +309,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a  href="/2017/03/08/6基本开发规范/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -404,27 +346,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h1><p>通过前面的介绍可以看出，在目录结构，接口方案等方面，都作出了多种选项。这些都是为啦，兼容前后端分离。</p>
-<ul>
-<li>场景一：前端页面为 html + js 不带路由，无需自启动项目开发</li>
-</ul>
-<blockquote>
-<p>html可以放在 <code>views</code> 下的合理目录中，通过服务端控制器进行指向，静态资源文件放入 <code>pubilc</code> 目录。启动服务端，进行项目开发。</p>
-</blockquote>
-<ul>
-<li>场景二：前端页面为 html + js 不带路由/带路由，需自启动项目开发，并构建。</li>
-</ul>
-<blockquote>
-<p>项目可整体放入根目录下，启动前端项目，启动本地服务端项目，通过 <code>HMR</code> 监听前端项目修改实时更新构建，服务端指向构建后前端项目中的构建文件目录。</p>
-<p>项目可整体放入根目录下，启动前端项目，启动本地服务端项目，后端使用无状态接口机制，前端路由，配置不同的接口地址。</p>
-</blockquote>
-<ul>
-<li>场景三：前端为 nodejs + js </li>
-</ul>
-<blockquote>
-<p>整个服务为一个项目整体，控制MVC，通过 <code>thrift</code> 与其他语言服务端进行通行。</p>
-</blockquote>
-
+              <h1 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h1>
+          
       
     </div>
     
@@ -433,6 +356,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a  href="/2017/03/08/7前后端分离/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -466,39 +393,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h1><p>项目基于 <code>express</code>  4.X版本，所以我们有拥有 <code>express</code> 在 <code>nodejs</code> 之上扩展的web应用所需的一些基本功能（http工具api，简易路由，中间件模型，模型引擎渲染接口，静态资源管理接口等）。</p>
-<p>由上可见， <code>express</code> 提供给我们的功能是很基础的和一些底层模式的便捷式包装，并不是有些同学自认为的，我们拥有了 <code>express</code> 就拥有了全世界。</p>
-<p>这便是我们整理这个开发体系的原因。以下是目前整合的一些核心功能点。</p>
-<h2 id="MVC实现"><a href="#MVC实现" class="headerlink" title="MVC实现"></a>MVC实现</h2><p> <code>express</code> 有个问题，大家可能都有遇到过。就是基于 <code>express</code> 之上千奇百怪的mvc实现。<br>由上章<a href="./结构介绍.md">结构介绍</a>可见，我们实现了一个比较合理的MVC规划，基于ORM库模型的整理,控制器的 <code>class</code> ，es7的<code>async/await</code> 模式， 利用 <code>lodash</code> 整合 <code>Router</code> 来挂载和关联 <code>render</code> 视图文件。</p>
-<h2 id="js-工具库"><a href="#js-工具库" class="headerlink" title="js 工具库"></a>js 工具库</h2><p><code>lodash</code></p>
-<h2 id="视图层"><a href="#视图层" class="headerlink" title="视图层"></a>视图层</h2><p>目前暂时采用简单并能平滑过渡的 <code>ejs</code> 。</p>
-<h2 id="请求解析"><a href="#请求解析" class="headerlink" title="请求解析"></a>请求解析</h2><p> <code>express</code>  抽离出了对 <code>body</code> 请求体的解析，单纯只做 <code>HTTP</code> 请求的 <code>request</code> 接收和 <code>response</code> 吐出。作为一个只为做基于<code>nodejs</code> 的上层基础封装的框架可以理解，但我们在日常的开发过程中，还是必须的。<br>所以，我们集成  <code>body-parser</code> , <code>cookie-parser</code> ,  <code>express-session</code> ,  <code>formidable</code> 等中间件。用于请求体，cookie，session,表单数据解析。</p>
-<h2 id="请求超时-频率控制"><a href="#请求超时-频率控制" class="headerlink" title="请求超时/频率控制"></a>请求超时/频率控制</h2><p>每一个请求到服务端，都是一种资源的消耗。当请求处理结束，这个占用的资源才会得以释放。为了避免资源的过度消耗和一些攻击。我们集成<code>Xtimeout</code>  中间件。提供请求超时控制和限制用户提交和查询速度。</p>
-<h2 id="跨域访问设置"><a href="#跨域访问设置" class="headerlink" title="跨域访问设置"></a>跨域访问设置</h2><p>通过 <code>XcrossOrigin</code> 中间件配置可跨域域名白名单。</p>
-<h2 id="系统日志"><a href="#系统日志" class="headerlink" title="系统日志"></a>系统日志</h2><p>通过 <code>log4js</code> 中间件生成系统日志，可设置自己需要到处的日志级别。</p>
-<h2 id="系统错误处理"><a href="#系统错误处理" class="headerlink" title="系统错误处理"></a>系统错误处理</h2><p>通过 <code>VError</code> 模块，利用try..catch 捕获，记录错误的信息和调用堆栈</p>
-<h2 id="安全模块"><a href="#安全模块" class="headerlink" title="安全模块"></a>安全模块</h2><p>通过 <code>Xhelmet</code> 中间件，从11个方面集成中间件进行安全防护。 <code>contentSecurityPolicy</code>  ， <code>dnsPrefetchControl</code> ，<code>frameguard</code> ， <code>hidePoweredBy</code> ，<code>hpkp</code> ， <code>hsts</code> ， <code>ieNoOpen</code> ，<code>noCache</code> ， <code>noSniff</code> ，<code>referrerPolicy</code> ， <code>xssFilter</code> </p>
-<h2 id="CSP-内容安全策略"><a href="#CSP-内容安全策略" class="headerlink" title="CSP 内容安全策略"></a>CSP 内容安全策略</h2><p>通过 <code>contentSecurityPolicy</code>  拦截并上报。</p>
-<h2 id="Node-Security-Project"><a href="#Node-Security-Project" class="headerlink" title="Node Security Project"></a>Node Security Project</h2><p>通过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsp check</span><br></pre></td></tr></table></figure></p>
-<p>检测第三方包是否存在安全问题。</p>
-<h2 id="登录状态，权限判断"><a href="#登录状态，权限判断" class="headerlink" title="登录状态，权限判断"></a>登录状态，权限判断</h2><p>通过 <code>Xcheck</code> 中间件进行检测。检测登录状态，建立权限列表，挂载用户信息。</p>
-<p>两种判断：</p>
-<ul>
-<li>通过服务端自己获取cookie带过来的sessionid进行redis查找。</li>
-<li>通过客户端传递token的形式进行token的校验，解析，进行用户信息查找。</li>
-</ul>
-<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p>通过 <code>redis</code>， <code>connect-redis</code> ， <code>mysql</code> 连接 <code>redis</code> + <code>mysql</code> 进行存储。可拓展整合其他存储策略。</p>
-<h2 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h2><p>采用 <code>sequelize</code> 可以根据数据库选型整合数据库的驱动模块来支撑不同的存储策略。</p>
-<h2 id="makedown-文件解析"><a href="#makedown-文件解析" class="headerlink" title="makedown 文件解析"></a>makedown 文件解析</h2><p>通过 <code>marked</code> 进行服务端makedown文件解析。</p>
-<h2 id="Xupload-上传模块"><a href="#Xupload-上传模块" class="headerlink" title="Xupload 上传模块"></a>Xupload 上传模块</h2><p>支持文件单个，批量上传，按天存储，图片压缩，合成等。</p>
-<h2 id="图片处理模块"><a href="#图片处理模块" class="headerlink" title="图片处理模块"></a>图片处理模块</h2><p>通过 <code>gm</code> 模块对图片进行裁剪，缩放等功能。</p>
-<h2 id="github用户像素头像"><a href="#github用户像素头像" class="headerlink" title="github用户像素头像"></a>github用户像素头像</h2><p>根据用户注册名 + 注册时间，通过 <code>identicon</code> 生成用户像素头像。</p>
-<h2 id="整合-ueditor-富文本编辑器"><a href="#整合-ueditor-富文本编辑器" class="headerlink" title="整合 ueditor 富文本编辑器"></a>整合 ueditor 富文本编辑器</h2><p> <code>ueditor</code> 提供nodejs服务端模块。</p>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodemon server --exec babel-node</span><br></pre></td></tr></table></figure>
-<h2 id="babel编译"><a href="#babel编译" class="headerlink" title="babel编译"></a>babel编译</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">babel src -d build</span><br></pre></td></tr></table></figure>
-<p>用以支持 es6 语法</p>
-<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>目前集成 <code>mocha</code> ， <code>chai</code> 模块</p>
-
+              <h1 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h1>
+          
       
     </div>
     
@@ -507,6 +403,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a  href="/2017/03/08/5功能模块介绍/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -540,21 +440,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="多项目整合"><a href="#多项目整合" class="headerlink" title="多项目整合"></a>多项目整合</h1><p>前面已经提到，可能有多个项目体。</p>
-<p>可以利用 git submodule 在根目录添加多个子摸块</p>
-<ul>
-<li>添加子分支</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule add 子模块</span><br></pre></td></tr></table></figure>
-<ul>
-<li>删除自摸块</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm 子模块</span><br></pre></td></tr></table></figure>
-<ul>
-<li>拉取项目</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone --recursive 父级模块</span><br></pre></td></tr></table></figure>
-
+              <h1 id="多项目整合"><a href="#多项目整合" class="headerlink" title="多项目整合"></a>多项目整合</h1>
+          
       
     </div>
     
@@ -563,6 +450,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a  href="/2017/03/08/8多项目整合/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -648,47 +539,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><p>简单了解下目录结构的约定规范。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">Xnode-project</span><br><span class="line">|</span><br><span class="line">├── app                     </span><br><span class="line">│   └── *.html</span><br><span class="line">├── eden                   </span><br><span class="line">├── build                   </span><br><span class="line">├── logs                    </span><br><span class="line">├── public                  </span><br><span class="line">│   ├── css             </span><br><span class="line">│   ├── file             </span><br><span class="line">│   ├── img</span><br><span class="line">│   │   └── user             </span><br><span class="line">│   ├── js             </span><br><span class="line">│   └── xupload             </span><br><span class="line">├── src                     </span><br><span class="line">│   ├── index.js            </span><br><span class="line">│   ├── server.js           </span><br><span class="line">│   ├── admin</span><br><span class="line">│   │   ├── controllers</span><br><span class="line">│   │   └── routers       </span><br><span class="line">│   ├── common              </span><br><span class="line">│   ├── config              </span><br><span class="line">│   ├── db</span><br><span class="line">│   │   ├── models</span><br><span class="line">│   │   └── orm_name.js                  </span><br><span class="line">│   ├── home</span><br><span class="line">│   │   ├── controllers</span><br><span class="line">│   │   └── routers                  </span><br><span class="line">│   └── views</span><br><span class="line">│       ├── admin</span><br><span class="line">│       └── home                  </span><br><span class="line">├── test                    </span><br><span class="line">│   └── test.js</span><br><span class="line">├── .babelrc                </span><br><span class="line">├── .gitignore</span><br><span class="line">├── .gitmodules</span><br><span class="line">├── CHANGELOG.md            </span><br><span class="line">├── package.json            </span><br><span class="line">└── README.md</span><br></pre></td></tr></table></figure>
-<h3 id="如上，由框架约定的目录："><a href="#如上，由框架约定的目录：" class="headerlink" title="如上，由框架约定的目录："></a>如上，由框架约定的目录：</h3><hr>
-<h2 id="app-html-用于存放前端项目-spa-静态等-，可以深度扩展也可平行添加其他名字的文件夹，例如-eden。"><a href="#app-html-用于存放前端项目-spa-静态等-，可以深度扩展也可平行添加其他名字的文件夹，例如-eden。" class="headerlink" title="- app/*.html 用于存放前端项目(spa,静态等)，可以深度扩展也可平行添加其他名字的文件夹，例如:eden。"></a>- <code>app/*.html</code> 用于存放前端项目(spa,静态等)，可以深度扩展也可平行添加其他名字的文件夹，例如:eden。</h2><h2 id="build-用于存放编译过后的后端代码，现只做简单es规范编译，后可扩展业务源码加密等。"><a href="#build-用于存放编译过后的后端代码，现只做简单es规范编译，后可扩展业务源码加密等。" class="headerlink" title="- build/** 用于存放编译过后的后端代码，现只做简单es规范编译，后可扩展业务源码加密等。"></a>- <code>build/**</code> 用于存放编译过后的后端代码，现只做简单es规范编译，后可扩展业务源码加密等。</h2><h2 id="logs-用于存放系统日志文件。"><a href="#logs-用于存放系统日志文件。" class="headerlink" title="- logs/** 用于存放系统日志文件。"></a>- <code>logs/**</code> 用于存放系统日志文件。</h2><ul>
-<li><code>public/css/**</code> 用于放置静态资源css。</li>
-<li><code>public/file/**</code> 用于放置静态资源file。</li>
-<li><code>public/img/**</code> 用于放置静态资源img，注册生成的用户头像等。</li>
-<li><code>public/js/**</code> 用于放置静态资源js。</li>
-<li><code>public/xupload/**</code> 用于放置上传资源。</li>
-</ul>
-<hr>
-<ul>
-<li><code>src/admin/controllers/**</code> 用于放置管理后台业务。</li>
-<li><code>src/admin/routers/**</code> 用于放置管理后台路由。</li>
-</ul>
-<hr>
-<h2 id="src-common-用于放置公用类，基础服务，方法，中间件。"><a href="#src-common-用于放置公用类，基础服务，方法，中间件。" class="headerlink" title="- src/common/** 用于放置公用类，基础服务，方法，中间件。"></a>- <code>src/common/**</code> 用于放置公用类，基础服务，方法，中间件。</h2><h2 id="src-config-用于放置配置文件，常用常量。"><a href="#src-config-用于放置配置文件，常用常量。" class="headerlink" title="- src/config/** 用于放置配置文件，常用常量。"></a>- <code>src/config/**</code> 用于放置配置文件，常用常量。</h2><ul>
-<li><code>src/db/models/**</code> 用于放置模型和模型基础方法。</li>
-<li><code>src/db/orm_name.js</code> 用于放置orm框架连接。</li>
-</ul>
-<hr>
-<ul>
-<li><code>src/home/controllers/**</code> 用于放置前台业务。</li>
-<li><code>src/home/routers/**</code> 用于放置前台路由。</li>
-</ul>
-<hr>
-<ul>
-<li><code>src/views/admin/**</code> 用于放置管理后台视图层。</li>
-<li><code>src/views/home/**</code> 用于放置前台视图层。</li>
-</ul>
-<hr>
-<ul>
-<li><code>.babelrc</code> babel配置文件</li>
-<li><code>.gitignore</code> </li>
-<li><code>.gitmodules</code> </li>
-<li><code>CHANGELOG.md</code> 用于放置项目迭代描述。</li>
-<li><code>package.json</code> </li>
-<li><code>README.md</code> 用于放置项目描述。</li>
-</ul>
-<hr>
-
+              <h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1>
+          
       
     </div>
     
@@ -697,6 +549,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a  href="/2017/03/06/4结构介绍/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -730,23 +586,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h1><ul>
-<li><p>Xnode — — 基础介绍</p>
-</li>
-<li><p>Xnode — — 结构介绍</p>
-</li>
-<li><p>Xnode — — 功能模块介绍</p>
-</li>
-<li><p>Xnode — — 基本开发规范</p>
-</li>
-<li><p>Xnode — — 前后端分离</p>
-</li>
-<li><p>Xnode — — 多项目整合</p>
-</li>
-<li><p>Xnode — — 上线部署</p>
-</li>
-</ul>
-
+              <h1 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h1>
+          
       
     </div>
     
@@ -755,6 +596,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a  href="/2017/02/28/2大纲/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -788,15 +633,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="Xnode-开发体系简介"><a href="#Xnode-开发体系简介" class="headerlink" title="Xnode 开发体系简介"></a>Xnode 开发体系简介</h1><p>作者：<a href="http://xiaox.coding.me/">xcj</a></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="提供统一的node服务端开发方案"><a href="#提供统一的node服务端开发方案" class="headerlink" title="提供统一的node服务端开发方案"></a>提供统一的node服务端开发方案</h3><blockquote>
-<p>为了方便开发同学们方便，快捷，迅速的搭建正确规范的web应用。本开发体系会从多个角度整合，搜集，集成大家日常开发过程中需要的基础服务为大家提供便利。包含第三方npm包模块，基础配置文件，项目mvc结构，基本开发流程，简单开发规范，多项目整合，基本单元测试，打包部署等。</p>
-</blockquote>
-<h3 id="提供前端后分离方案"><a href="#提供前端后分离方案" class="headerlink" title="提供前端后分离方案"></a>提供前端后分离方案</h3><blockquote>
-<p>为配合shark 2.0 体系预演前后端分离方案，提供并支持多种前后端分离解决方案。</p>
-</blockquote>
-<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">成为nodejs体系中的jquery</span><br><span class="line"></span><br><span class="line">丰富不臃肿，简约不简单</span><br></pre></td></tr></table></figure>
-
+              <h1 id="Xnode-开发体系简介"><a href="#Xnode-开发体系简介" class="headerlink" title="Xnode 开发体系简介"></a>Xnode 开发体系简介</h1>
+          
       
     </div>
     
@@ -805,6 +643,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a  href="/2017/02/28/1介绍/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
