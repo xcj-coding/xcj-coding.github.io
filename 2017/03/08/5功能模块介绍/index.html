@@ -3,18 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>react生命周期方法 | Yangtze Xiong--个人博客</title>
+  <title>Yangtze Xiong--个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="生命周期方法">
+  <meta name="description" content="核心功能项目基于 express  4.X版本，所以我们有拥有 express 在 nodejs 之上扩展的web应用所需的一些基本功能（http工具api，简易路由，中间件模型，模型引擎渲染接口，静态资源管理接口等）。
+由上可见， express 提供给我们的功能是很基础的和一些底层模式的便捷式包装，并不是有些同学自认为的，我们拥有了 express 就拥有了全世界。
+这便是我们整理这个开发体系">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react生命周期方法">
-<meta property="og:url" content="http://xiaox.coding.me/2016/04/17/react生命周期/index.html">
+<meta property="og:title" content="Yangtze Xiong--个人博客">
+<meta property="og:url" content="http://xiaox.coding.me/2017/03/08/5功能模块介绍/index.html">
 <meta property="og:site_name" content="Yangtze Xiong--个人博客">
-<meta property="og:description" content="生命周期方法">
-<meta property="og:updated_time" content="2016-04-17T14:42:24.000Z">
+<meta property="og:description" content="核心功能项目基于 express  4.X版本，所以我们有拥有 express 在 nodejs 之上扩展的web应用所需的一些基本功能（http工具api，简易路由，中间件模型，模型引擎渲染接口，静态资源管理接口等）。
+由上可见， express 提供给我们的功能是很基础的和一些底层模式的便捷式包装，并不是有些同学自认为的，我们拥有了 express 就拥有了全世界。
+这便是我们整理这个开发体系">
+<meta property="og:updated_time" content="2017-03-08T13:26:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="react生命周期方法">
-<meta name="twitter:description" content="生命周期方法">
+<meta name="twitter:title" content="Yangtze Xiong--个人博客">
+<meta name="twitter:description" content="核心功能项目基于 express  4.X版本，所以我们有拥有 express 在 nodejs 之上扩展的web应用所需的一些基本功能（http工具api，简易路由，中间件模型，模型引擎渲染接口，静态资源管理接口等）。
+由上可见， express 提供给我们的功能是很基础的和一些底层模式的便捷式包装，并不是有些同学自认为的，我们拥有了 express 就拥有了全世界。
+这便是我们整理这个开发体系">
   
     <link rel="alternative" href="/" title="Yangtze Xiong--个人博客" type="application/atom+xml">
   
@@ -232,11 +238,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-react生命周期" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-5功能模块介绍" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/17/react生命周期/" class="article-date">
-      <time datetime="2016-04-17T13:51:25.000Z" itemprop="datePublished">2016-04-17</time>
+      <a href="/2017/03/08/5功能模块介绍/" class="article-date">
+      <time datetime="2017-03-08T13:26:05.000Z" itemprop="datePublished">2017-03-08</time>
 </a>
     </div>
   
@@ -245,71 +251,41 @@
       <input type="hidden" class="isFancy" />
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      react生命周期方法
-    </h1>
-  
-
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-
-        
-        <div class="clearfix"></div>
-      </div>
-      
-    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>生命周期方法</p>
-<a id="more"></a>
-<ol>
-<li><p>componentWillMount(){}</p>
-<blockquote>
-<p>挂载，服务端和客户端初始化只调用一次，在初始化渲染执行之前立刻调用</p>
-</blockquote>
-</li>
-<li><p>componentDidMount(){}</p>
-<blockquote>
-<p>挂载，在初始化渲染执行之后立刻调用一次，仅客户端有效，<br>组件拥有一次DOM展示，可以通过this.getDOMNode()来获取相应的DOM节点</p>
-</blockquote>
-</li>
-<li><p>componentWillReceiveProps(){}</p>
-<blockquote>
-<p>更新，在组件接收到新的props调用，初始化渲染的时候不会调用<br>可以作为react在prop传入之后，render()渲染之前更新state的机会，老的props可以通过this.props获取到。<br>在该函数中调用this.setState()将不会引起第二次渲染<br>componentWillReceiveProps(object nextProps){</p>
-<p>}<br>componentWillReceiveProps(nextProps){</p>
-<pre><code>this.setState({
-    likesIncreasing: nextProps.likeCount &gt; this.props.likeCount
-})
-</code></pre><p>}</p>
-</blockquote>
-</li>
-<li><p>shouldComponentUpdate(nextProps,nextState){return nextProps.id !== this.props.id;}</p>
-<blockquote>
-<p>更新，确定新的props和state不会导致组件更新，此处返回false，render()将不会执行，直到下一次state改变<br>componentWillUpdate和componentDidUpdate也不会调用</p>
-</blockquote>
-</li>
-<li><p>componentWillUpdate(props, state){}</p>
-<blockquote>
-<p>更新，你不能在刚方法中使用 this.setState()。如果需要更新 state 来响应某个 prop 的改变<br>使用 componentWillReceiveProps</p>
-</blockquote>
-</li>
-<li><p>componentDidUpdata(prevProps, prevState){}</p>
-<blockquote>
-<p>在组件的更新同步到DOM中之后立刻被调用，初始化的时候不调用<br>访问DOM节点使用this.getDOMNode()</p>
-</blockquote>
-</li>
-<li><p>componentWillUnmount(){}</p>
-<blockquote>
-<p>在组件从DOM中移除的时候立刻调用<br>该方法中执行任何必要的清理</p>
-</blockquote>
-</li>
-</ol>
+        <h1 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h1><p>项目基于 <code>express</code>  4.X版本，所以我们有拥有 <code>express</code> 在 <code>nodejs</code> 之上扩展的web应用所需的一些基本功能（http工具api，简易路由，中间件模型，模型引擎渲染接口，静态资源管理接口等）。</p>
+<p>由上可见， <code>express</code> 提供给我们的功能是很基础的和一些底层模式的便捷式包装，并不是有些同学自认为的，我们拥有了 <code>express</code> 就拥有了全世界。</p>
+<p>这便是我们整理这个开发体系的原因。以下是目前整合的一些核心功能点。</p>
+<h2 id="MVC实现"><a href="#MVC实现" class="headerlink" title="MVC实现"></a>MVC实现</h2><p> <code>express</code> 有个问题，大家可能都有遇到过。就是基于 <code>express</code> 之上千奇百怪的mvc实现。<br>由上章<a href="./结构介绍.md">结构介绍</a>可见，我们实现了一个比较合理的MVC规划，基于ORM库模型的整理,控制器的 <code>class</code> ，es7的<code>async/await</code> 模式， 利用 <code>lodash</code> 整合 <code>Router</code> 来挂载和关联 <code>render</code> 视图文件。</p>
+<h2 id="js-工具库"><a href="#js-工具库" class="headerlink" title="js 工具库"></a>js 工具库</h2><p><code>lodash</code></p>
+<h2 id="视图层"><a href="#视图层" class="headerlink" title="视图层"></a>视图层</h2><p>目前暂时采用简单并能平滑过渡的 <code>ejs</code> 。</p>
+<h2 id="请求解析"><a href="#请求解析" class="headerlink" title="请求解析"></a>请求解析</h2><p> <code>express</code>  抽离出了对 <code>body</code> 请求体的解析，单纯只做 <code>HTTP</code> 请求的 <code>request</code> 接收和 <code>response</code> 吐出。作为一个只为做基于<code>nodejs</code> 的上层基础封装的框架可以理解，但我们在日常的开发过程中，还是必须的。<br>所以，我们集成  <code>body-parser</code> , <code>cookie-parser</code> ,  <code>express-session</code> ,  <code>formidable</code> 等中间件。用于请求体，cookie，session,表单数据解析。</p>
+<h2 id="请求超时-频率控制"><a href="#请求超时-频率控制" class="headerlink" title="请求超时/频率控制"></a>请求超时/频率控制</h2><p>每一个请求到服务端，都是一种资源的消耗。当请求处理结束，这个占用的资源才会得以释放。为了避免资源的过度消耗和一些攻击。我们集成<code>Xtimeout</code>  中间件。提供请求超时控制和限制用户提交和查询速度。</p>
+<h2 id="跨域访问设置"><a href="#跨域访问设置" class="headerlink" title="跨域访问设置"></a>跨域访问设置</h2><p>通过 <code>XcrossOrigin</code> 中间件配置可跨域域名白名单。</p>
+<h2 id="系统日志"><a href="#系统日志" class="headerlink" title="系统日志"></a>系统日志</h2><p>通过 <code>log4js</code> 中间件生成系统日志，可设置自己需要到处的日志级别。</p>
+<h2 id="系统错误处理"><a href="#系统错误处理" class="headerlink" title="系统错误处理"></a>系统错误处理</h2><p>通过 <code>VError</code> 模块，利用try..catch 捕获，记录错误的信息和调用堆栈</p>
+<h2 id="安全模块"><a href="#安全模块" class="headerlink" title="安全模块"></a>安全模块</h2><p>通过 <code>Xhelmet</code> 中间件，从11个方面集成中间件进行安全防护。 <code>contentSecurityPolicy</code>  ， <code>dnsPrefetchControl</code> ，<code>frameguard</code> ， <code>hidePoweredBy</code> ，<code>hpkp</code> ， <code>hsts</code> ， <code>ieNoOpen</code> ，<code>noCache</code> ， <code>noSniff</code> ，<code>referrerPolicy</code> ， <code>xssFilter</code> </p>
+<h2 id="CSP-内容安全策略"><a href="#CSP-内容安全策略" class="headerlink" title="CSP 内容安全策略"></a>CSP 内容安全策略</h2><p>通过 <code>contentSecurityPolicy</code>  拦截并上报。</p>
+<h2 id="Node-Security-Project"><a href="#Node-Security-Project" class="headerlink" title="Node Security Project"></a>Node Security Project</h2><p>通过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsp check</span><br></pre></td></tr></table></figure></p>
+<p>检测第三方包是否存在安全问题。</p>
+<h2 id="登录状态，权限判断"><a href="#登录状态，权限判断" class="headerlink" title="登录状态，权限判断"></a>登录状态，权限判断</h2><p>通过 <code>Xcheck</code> 中间件进行检测。检测登录状态，建立权限列表，挂载用户信息。</p>
+<p>两种判断：</p>
+<ul>
+<li>通过服务端自己获取cookie带过来的sessionid进行redis查找。</li>
+<li>通过客户端传递token的形式进行token的校验，解析，进行用户信息查找。</li>
+</ul>
+<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p>通过 <code>redis</code>， <code>connect-redis</code> ， <code>mysql</code> 连接 <code>redis</code> + <code>mysql</code> 进行存储。可拓展整合其他存储策略。</p>
+<h2 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h2><p>采用 <code>sequelize</code> 可以根据数据库选型整合数据库的驱动模块来支撑不同的存储策略。</p>
+<h2 id="makedown-文件解析"><a href="#makedown-文件解析" class="headerlink" title="makedown 文件解析"></a>makedown 文件解析</h2><p>通过 <code>marked</code> 进行服务端makedown文件解析。</p>
+<h2 id="Xupload-上传模块"><a href="#Xupload-上传模块" class="headerlink" title="Xupload 上传模块"></a>Xupload 上传模块</h2><p>支持文件单个，批量上传，按天存储，图片压缩，合成等。</p>
+<h2 id="图片处理模块"><a href="#图片处理模块" class="headerlink" title="图片处理模块"></a>图片处理模块</h2><p>通过 <code>gm</code> 模块对图片进行裁剪，缩放等功能。</p>
+<h2 id="github用户像素头像"><a href="#github用户像素头像" class="headerlink" title="github用户像素头像"></a>github用户像素头像</h2><p>根据用户注册名 + 注册时间，通过 <code>identicon</code> 生成用户像素头像。</p>
+<h2 id="整合-ueditor-富文本编辑器"><a href="#整合-ueditor-富文本编辑器" class="headerlink" title="整合 ueditor 富文本编辑器"></a>整合 ueditor 富文本编辑器</h2><p> <code>ueditor</code> 提供nodejs服务端模块。</p>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodemon server --exec babel-node</span><br></pre></td></tr></table></figure>
+<h2 id="babel编译"><a href="#babel编译" class="headerlink" title="babel编译"></a>babel编译</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">babel src -d build</span><br></pre></td></tr></table></figure>
+<p>用以支持 es6 语法</p>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>目前集成 <code>mocha</code> ， <code>chai</code> 模块</p>
 
       
     </div>
@@ -318,13 +294,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/04/17/react生命周期/">react生命周期方法</a></p>
+        <p><span>本文标题:</span><a href="/2017/03/08/5功能模块介绍/"></a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Yangtze Xiong 的个人博客">Yangtze Xiong</a></p>
-        <p><span>发布时间:</span>2016年04月17日 - 21时51分</p>
-        <p><span>最后更新:</span>2016年04月17日 - 22时42分</p>
+        <p><span>发布时间:</span>2017年03月08日 - 21时26分</p>
+        <p><span>最后更新:</span>2017年03月08日 - 21时26分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/04/17/react生命周期/" title="react生命周期方法">http://xiaox.coding.me/2016/04/17/react生命周期/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://xiaox.coding.me/2016/04/17/react生命周期/　　作者: Yangtze Xiong" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/08/5功能模块介绍/" title="">http://xiaox.coding.me/2017/03/08/5功能模块介绍/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://xiaox.coding.me/2017/03/08/5功能模块介绍/　　作者: Yangtze Xiong" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -337,15 +313,20 @@
 
 <nav id="article-nav">
   
-    <a href="/2016/04/17/module/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/03/08/7前后端分离/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          ES6 -- Module
+          (no title)
         
       </div>
     </a>
   
+  
+    <a href="/2017/03/08/8多项目整合/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -354,7 +335,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#核心功能"><span class="toc-number">1.</span> <span class="toc-text">核心功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC实现"><span class="toc-number">1.1.</span> <span class="toc-text">MVC实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js-工具库"><span class="toc-number">1.2.</span> <span class="toc-text">js 工具库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图层"><span class="toc-number">1.3.</span> <span class="toc-text">视图层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请求解析"><span class="toc-number">1.4.</span> <span class="toc-text">请求解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请求超时-频率控制"><span class="toc-number">1.5.</span> <span class="toc-text">请求超时/频率控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#跨域访问设置"><span class="toc-number">1.6.</span> <span class="toc-text">跨域访问设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统日志"><span class="toc-number">1.7.</span> <span class="toc-text">系统日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统错误处理"><span class="toc-number">1.8.</span> <span class="toc-text">系统错误处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安全模块"><span class="toc-number">1.9.</span> <span class="toc-text">安全模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSP-内容安全策略"><span class="toc-number">1.10.</span> <span class="toc-text">CSP 内容安全策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-Security-Project"><span class="toc-number">1.11.</span> <span class="toc-text">Node Security Project</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#登录状态，权限判断"><span class="toc-number">1.12.</span> <span class="toc-text">登录状态，权限判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储"><span class="toc-number">1.13.</span> <span class="toc-text">存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ORM"><span class="toc-number">1.14.</span> <span class="toc-text">ORM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#makedown-文件解析"><span class="toc-number">1.15.</span> <span class="toc-text">makedown 文件解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Xupload-上传模块"><span class="toc-number">1.16.</span> <span class="toc-text">Xupload 上传模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片处理模块"><span class="toc-number">1.17.</span> <span class="toc-text">图片处理模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#github用户像素头像"><span class="toc-number">1.18.</span> <span class="toc-text">github用户像素头像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整合-ueditor-富文本编辑器"><span class="toc-number">1.19.</span> <span class="toc-text">整合 ueditor 富文本编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-number">1.20.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babel编译"><span class="toc-number">1.21.</span> <span class="toc-text">babel编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单元测试"><span class="toc-number">1.22.</span> <span class="toc-text">单元测试</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -419,13 +400,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/04/17/module/" title="上一篇: ES6 -- Module">
+            <a href="/2017/03/08/7前后端分离/" title="上一篇: ">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/03/08/8多项目整合/" title="下一篇: ">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/9上线部署/">9上线部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/6基本开发规范/">6基本开发规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/7前后端分离/">7前后端分离</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/5功能模块介绍/">5功能模块介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/8多项目整合/">8多项目整合</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/3基础介绍/">3基础介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/06/4结构介绍/">4结构介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/28/2大纲/">2大纲</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/28/1介绍/">1介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/promise/">ES6 -- Promise对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/async/">ES6 -- 异步操作和Async函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/class/">ES6 -- Class</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/module/">ES6 -- Module</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/react生命周期/">react生命周期方法</a></li></ul>

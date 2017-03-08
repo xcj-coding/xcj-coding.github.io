@@ -3,18 +3,75 @@
 <head>
   <meta charset="utf-8">
   
-  <title>react生命周期方法 | Yangtze Xiong--个人博客</title>
+  <title>Yangtze Xiong--个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="生命周期方法">
+  <meta name="description" content="基本开发规范
+目前处于起步阶段，开发规范不好梳理，只能零散提出一些注意项，后续进行补充完善。
+
+
+node版本，npm版本
+
+12node版本 v6.9.4npm版本 3.10.10
+
+添加第三方npm包
+
+1npm install xxx --save
+
+卸载第三方npm包
+
+1npm uninstall xxx --save
+
+–save-dev 不可随意使用
+
+
+共用方法，共用类，数据模型，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react生命周期方法">
-<meta property="og:url" content="http://xiaox.coding.me/2016/04/17/react生命周期/index.html">
+<meta property="og:title" content="Yangtze Xiong--个人博客">
+<meta property="og:url" content="http://xiaox.coding.me/2017/03/08/6基本开发规范/index.html">
 <meta property="og:site_name" content="Yangtze Xiong--个人博客">
-<meta property="og:description" content="生命周期方法">
-<meta property="og:updated_time" content="2016-04-17T14:42:24.000Z">
+<meta property="og:description" content="基本开发规范
+目前处于起步阶段，开发规范不好梳理，只能零散提出一些注意项，后续进行补充完善。
+
+
+node版本，npm版本
+
+12node版本 v6.9.4npm版本 3.10.10
+
+添加第三方npm包
+
+1npm install xxx --save
+
+卸载第三方npm包
+
+1npm uninstall xxx --save
+
+–save-dev 不可随意使用
+
+
+共用方法，共用类，数据模型，">
+<meta property="og:updated_time" content="2017-03-08T13:26:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="react生命周期方法">
-<meta name="twitter:description" content="生命周期方法">
+<meta name="twitter:title" content="Yangtze Xiong--个人博客">
+<meta name="twitter:description" content="基本开发规范
+目前处于起步阶段，开发规范不好梳理，只能零散提出一些注意项，后续进行补充完善。
+
+
+node版本，npm版本
+
+12node版本 v6.9.4npm版本 3.10.10
+
+添加第三方npm包
+
+1npm install xxx --save
+
+卸载第三方npm包
+
+1npm uninstall xxx --save
+
+–save-dev 不可随意使用
+
+
+共用方法，共用类，数据模型，">
   
     <link rel="alternative" href="/" title="Yangtze Xiong--个人博客" type="application/atom+xml">
   
@@ -232,11 +289,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-react生命周期" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-6基本开发规范" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/17/react生命周期/" class="article-date">
-      <time datetime="2016-04-17T13:51:25.000Z" itemprop="datePublished">2016-04-17</time>
+      <a href="/2017/03/08/6基本开发规范/" class="article-date">
+      <time datetime="2017-03-08T13:26:05.000Z" itemprop="datePublished">2017-03-08</time>
 </a>
     </div>
   
@@ -245,71 +302,65 @@
       <input type="hidden" class="isFancy" />
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      react生命周期方法
-    </h1>
-  
-
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-
-        
-        <div class="clearfix"></div>
-      </div>
-      
-    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>生命周期方法</p>
-<a id="more"></a>
-<ol>
-<li><p>componentWillMount(){}</p>
-<blockquote>
-<p>挂载，服务端和客户端初始化只调用一次，在初始化渲染执行之前立刻调用</p>
+        <h1 id="基本开发规范"><a href="#基本开发规范" class="headerlink" title="基本开发规范"></a>基本开发规范</h1><blockquote>
+<p>目前处于起步阶段，开发规范不好梳理，只能零散提出一些注意项，后续进行补充完善。</p>
 </blockquote>
-</li>
-<li><p>componentDidMount(){}</p>
+<ul>
+<li>node版本，npm版本</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node版本 v6.9.4</span><br><span class="line">npm版本 3.10.10</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加第三方npm包</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install xxx --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>卸载第三方npm包</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall xxx --save</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>挂载，在初始化渲染执行之后立刻调用一次，仅客户端有效，<br>组件拥有一次DOM展示，可以通过this.getDOMNode()来获取相应的DOM节点</p>
+<p>–save-dev 不可随意使用</p>
 </blockquote>
+<ul>
+<li><p>共用方法，共用类，数据模型，控制器，路由等文件名统一英文大写开头驼峰形式。例如：News.js</p>
 </li>
-<li><p>componentWillReceiveProps(){}</p>
+<li><p>配置文件英文小写。例如：xxx.conf.js</p>
+</li>
+<li><p>改写后方法，中间件，统一以X开头命名。例如：Xtimeout.js，Xupload.js</p>
+</li>
+<li><p>中间件参数传递，统一挂载到req.nextData = {} 中</p>
+</li>
+<li><p>路由接口采用RESTful架构</p>
+</li>
+<li><p>纯api接口传递数据类型统一使用json，接口请求方法使用post</p>
+</li>
+<li><p>接口返回格式统一</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">res.json(&#123; code: 0, msg: &apos;成功&apos; &#125;)</span><br><span class="line"></span><br><span class="line">res.json(&#123; code: -1, msg: &apos;失败&apos; &#125;) </span><br><span class="line"></span><br><span class="line">res.json(&#123; code: 0, data: &#123;&#125; &#125;)</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>更新，在组件接收到新的props调用，初始化渲染的时候不会调用<br>可以作为react在prop传入之后，render()渲染之前更新state的机会，老的props可以通过this.props获取到。<br>在该函数中调用this.setState()将不会引起第二次渲染<br>componentWillReceiveProps(object nextProps){</p>
-<p>}<br>componentWillReceiveProps(nextProps){</p>
-<pre><code>this.setState({
-    likesIncreasing: nextProps.likeCount &gt; this.props.likeCount
-})
-</code></pre><p>}</p>
+<p>目前错误返回code全为-1，后续规划错误码段。</p>
+<p>代码书写，尽量保持和原风格一致，有更好的想法，可以提出，方便统一修改。</p>
+<p>目录结构文件存放参照前面结构介绍章节</p>
 </blockquote>
+<hr>
+<h3 id="git使用规范"><a href="#git使用规范" class="headerlink" title="git使用规范:"></a>git使用规范:</h3><h4 id="1-master分支不能提交代码"><a href="#1-master分支不能提交代码" class="headerlink" title="1. master分支不能提交代码"></a>1. master分支不能提交代码</h4><h4 id="2-dev为开发分支（目前先一起使用dev分支，不要随意开分支，合并到master需知会管理员）"><a href="#2-dev为开发分支（目前先一起使用dev分支，不要随意开分支，合并到master需知会管理员）" class="headerlink" title="2. dev为开发分支（目前先一起使用dev分支，不要随意开分支，合并到master需知会管理员）"></a>2. dev为开发分支（目前先一起使用dev分支，不要随意开分支，合并到master需知会管理员）</h4><p><strong>后续扩展xcj_dev，＊_dev</strong></p>
+<h4 id="3-pro为生产分支"><a href="#3-pro为生产分支" class="headerlink" title="3. pro为生产分支"></a>3. pro为生产分支</h4><p><strong>后续扩展release_1.0.0，release_2.0.0</strong></p>
+<h4 id="4-配置文件修改不要随意提交"><a href="#4-配置文件修改不要随意提交" class="headerlink" title="4. 配置文件修改不要随意提交"></a>4. 配置文件修改不要随意提交</h4><hr>
+<h3 id="项目启动："><a href="#项目启动：" class="headerlink" title="项目启动："></a>项目启动：</h3><ul>
+<li>node环境</li>
+<li><p>npm install 下载依赖</p>
 </li>
-<li><p>shouldComponentUpdate(nextProps,nextState){return nextProps.id !== this.props.id;}</p>
-<blockquote>
-<p>更新，确定新的props和state不会导致组件更新，此处返回false，render()将不会执行，直到下一次state改变<br>componentWillUpdate和componentDidUpdate也不会调用</p>
-</blockquote>
+<li><p>npm run start 启动dev环境</p>
 </li>
-<li><p>componentWillUpdate(props, state){}</p>
-<blockquote>
-<p>更新，你不能在刚方法中使用 this.setState()。如果需要更新 state 来响应某个 prop 的改变<br>使用 componentWillReceiveProps</p>
-</blockquote>
+<li><p>npm run server 启动生产环境</p>
 </li>
-<li><p>componentDidUpdata(prevProps, prevState){}</p>
-<blockquote>
-<p>在组件的更新同步到DOM中之后立刻被调用，初始化的时候不调用<br>访问DOM节点使用this.getDOMNode()</p>
-</blockquote>
+<li><p>npm run dev 开发环境构建（一般不用，调试或构建版问题重现使用）</p>
 </li>
-<li><p>componentWillUnmount(){}</p>
-<blockquote>
-<p>在组件从DOM中移除的时候立刻调用<br>该方法中执行任何必要的清理</p>
-</blockquote>
-</li>
-</ol>
+<li>npm run pro 生产环境构建（在pro分支使用，尚未配置完全）</li>
+</ul>
 
       
     </div>
@@ -318,13 +369,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/04/17/react生命周期/">react生命周期方法</a></p>
+        <p><span>本文标题:</span><a href="/2017/03/08/6基本开发规范/"></a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Yangtze Xiong 的个人博客">Yangtze Xiong</a></p>
-        <p><span>发布时间:</span>2016年04月17日 - 21时51分</p>
-        <p><span>最后更新:</span>2016年04月17日 - 22时42分</p>
+        <p><span>发布时间:</span>2017年03月08日 - 21时26分</p>
+        <p><span>最后更新:</span>2017年03月08日 - 21时26分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/04/17/react生命周期/" title="react生命周期方法">http://xiaox.coding.me/2016/04/17/react生命周期/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://xiaox.coding.me/2016/04/17/react生命周期/　　作者: Yangtze Xiong" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/08/6基本开发规范/" title="">http://xiaox.coding.me/2017/03/08/6基本开发规范/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://xiaox.coding.me/2017/03/08/6基本开发规范/　　作者: Yangtze Xiong" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -337,15 +388,20 @@
 
 <nav id="article-nav">
   
-    <a href="/2016/04/17/module/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/03/08/9上线部署/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          ES6 -- Module
+          (no title)
         
       </div>
     </a>
   
+  
+    <a href="/2017/03/08/7前后端分离/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -354,7 +410,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本开发规范"><span class="toc-number">1.</span> <span class="toc-text">基本开发规范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git使用规范"><span class="toc-number">1.0.1.</span> <span class="toc-text">git使用规范:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-master分支不能提交代码"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">1. master分支不能提交代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-dev为开发分支（目前先一起使用dev分支，不要随意开分支，合并到master需知会管理员）"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">2. dev为开发分支（目前先一起使用dev分支，不要随意开分支，合并到master需知会管理员）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-pro为生产分支"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">3. pro为生产分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-配置文件修改不要随意提交"><span class="toc-number">1.0.1.4.</span> <span class="toc-text">4. 配置文件修改不要随意提交</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目启动："><span class="toc-number">1.0.2.</span> <span class="toc-text">项目启动：</span></a></li></ol></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -419,13 +475,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/04/17/module/" title="上一篇: ES6 -- Module">
+            <a href="/2017/03/08/9上线部署/" title="上一篇: ">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/03/08/7前后端分离/" title="下一篇: ">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/9上线部署/">9上线部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/6基本开发规范/">6基本开发规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/7前后端分离/">7前后端分离</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/5功能模块介绍/">5功能模块介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/8多项目整合/">8多项目整合</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/3基础介绍/">3基础介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/06/4结构介绍/">4结构介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/28/2大纲/">2大纲</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/28/1介绍/">1介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/promise/">ES6 -- Promise对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/async/">ES6 -- 异步操作和Async函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/class/">ES6 -- Class</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/module/">ES6 -- Module</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/17/react生命周期/">react生命周期方法</a></li></ul>
